@@ -19,7 +19,7 @@ class Usuario(Base):
 
     def to_dict(self):
         return {
-            "ID": str(self.id_usuario)[:8] + "...",
+            "ID": str(self.id_usuario),
             "Nome": f"{self.primeiro_nome} {self.sobrenome or ''}".strip(),
             "E-mail": self.email,
             "Status": self.status
