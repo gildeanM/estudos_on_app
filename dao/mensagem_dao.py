@@ -1,9 +1,7 @@
 from database.connection import get_sqlalchemy_session
 from models.entities import Mensagem
 
-
-
-def buscar_encontros_no_banco(filtro = ""):
+def buscar_mensagens_no_banco(filtro = ""):
     session = get_sqlalchemy_session()
     try:
         query = session.query(Mensagem)

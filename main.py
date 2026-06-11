@@ -1,12 +1,12 @@
 import panel as pn
 from views.usuario_view import tela_usuario
 from views.grupo_view import tela_grupo
+from views.encontro_view import tela_encontro
+from views.mensagem_view import tela_mensagem
 
 pn.extension('tabulator', sizing_mode="stretch_width")
 
 
-def tela_encontro(): return pn.Column(pn.pane.Markdown("# 📅 Gestão de Encontros"), pn.pane.Alert("Aguardando Dia 4", alert_type="warning"))
-def tela_mensagem(): return pn.Column(pn.pane.Markdown("# 💬 Histórico de Mensagens"), pn.pane.Alert("Aguardando Dia 4", alert_type="warning"))
 def tela_relatorios(): return pn.Column(pn.pane.Markdown("# 📊 Relatórios"), pn.pane.Alert("Aguardando Sprint 2", alert_type="info"))
 
 def roteador_de_telas(aba_selecionada):
