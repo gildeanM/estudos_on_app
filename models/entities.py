@@ -56,7 +56,7 @@ class Encontro(Base):
 
     def to_dict(self):
         return {
-            "ID": str(self.id_encontro)[:8] + "...",
+            "ID": str(self.id_encontro),
             "Título": self.titulo,
             "Início": self.data_hora_inicio.strftime("%d/%m %H:%M") if self.data_hora_inicio else "",
             "Fim": self.data_hora_fim.strftime("%d/%m %H:%M") if self.data_hora_fim else "",

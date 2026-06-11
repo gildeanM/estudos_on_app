@@ -23,3 +23,51 @@ def salvar_mensagem_no_banco(conteudo, tipo, id_usuario, id_grupo):
         return False, f"⚠️ Erro ao enviar mensagem: {e}"
     finally:
         session.close()
+
+def buscar_mensagem_por_id(id_mensagem):
+    session = get_sqlalchemy_session()
+    try:
+        return session.query(Mensagem).get(int(id_mensagem))
+    finally:
+        session.close()
+
+def atualizar_mensagem_no_banco(id_mensagem, conteudo, tipo, id_usuario, id_grupo):
+    from datetime import datetime
+    session = get_sqlalchemy_session()
+    try:
+        m = session.query(Mensagem).get(id_mensagem)
+        if not m:
+            return False, "❌ Mensagem não encontrada."
+        
+        m.conteudo = conteudo
+        m.tipo_mensagem = tipo
+        m.id_usuario = id_usuario
+        m.id_grupo = id_grupo
+        m.editada = True
+        m.data_edicao = datetime.utcnow()
+
+        session.commit()
+        return True, "✅ Mensagem atualizado com sucesso!"
+
+    except IntegrityError as err:
+        session.rollback()
+        return False, f"⚠️ Erro ao atualizar: {err}"
+    finally:
+        session.close()
+
+def deletar_mensagem_no_banco(id_mensagem):
+    session = get_sqlalchemy_session()
+    try:
+        m = session.query(Mensagem).get(int(id_mensagem))
+        if not m:
+            return False, "❌ Mensagem não encontrado."
+        
+        session.delete(m)
+        session.commit()
+        return True, "🗑️ Mensagem removida com sucesso!"
+
+    except IntegrityError:
+        session.rollback()        
+        return False, "⛔ Negado: Esta mensagem possui dependências (como respostas)."
+    finally:
+        session.close()    
