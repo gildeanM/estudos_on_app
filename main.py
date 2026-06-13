@@ -3,11 +3,9 @@ from views.usuario_view import tela_usuario
 from views.grupo_view import tela_grupo
 from views.encontro_view import tela_encontro
 from views.mensagem_view import tela_mensagem
+from views.relatorios_view import tela_relatorios
 
 pn.extension('tabulator', sizing_mode="stretch_width")
-
-
-def tela_relatorios(): return pn.Column(pn.pane.Markdown("# 📊 Relatórios"), pn.pane.Alert("Aguardando Sprint 2", alert_type="info"))
 
 def roteador_de_telas(aba_selecionada):
     if aba_selecionada == "Usuários": return tela_usuario()
