@@ -1,8 +1,8 @@
 import panel as pn
 import pandas as pd
-from dao.mensagem_dao import (
-    buscar_mensagens_no_banco, salvar_mensagem_no_banco,
-    atualizar_mensagem_no_banco, deletar_mensagem_no_banco, buscar_mensagem_por_id
+from dao.grupo_dao import (
+    buscar_grupos_no_banco, salvar_grupo_no_banco,
+    atualizar_grupo_no_banco, deletar_grupo_no_banco
 )
 
 def obter_df_grupos(filtro=""):
